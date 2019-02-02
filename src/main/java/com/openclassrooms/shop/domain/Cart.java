@@ -81,7 +81,8 @@ public class Cart {
     public Product findProductInCartLines(Long productId)
     {
         // TODO implement the method
-        return null;
+    	Optional <CartLine> product = actualCartList.stream().filter(x ->x.getProduct().getId().equals(productId)).findFirst();
+        return product.get().getProduct();
     }
 
     /**
