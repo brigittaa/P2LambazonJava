@@ -23,6 +23,18 @@ public class Cart {
      */
     public void addItem(Product product, int quantity) {
         // TODO implement the method
+    	CartLine cartline = new CartLine();
+    	
+    	Optional<CartLine> itemExists = actualCartList.stream().filter(x -> x.getProduct().getId().equals(product.getId())).findFirst();
+    	
+    	if(!(itemExists.isPresent())) {
+    		cartline.setProduct(product);
+    		cartline.setQuantity(quantity);
+    		actualCartList.add(cartline);
+    	} else {
+    		itemExists.get().setQuantity(itemExists.get().getQuantity() + quantity);
+    		
+    	}
     }
 
     /**
