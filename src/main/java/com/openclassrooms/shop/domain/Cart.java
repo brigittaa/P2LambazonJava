@@ -66,7 +66,12 @@ public class Cart {
     public double getAverageValue()
     {
         // TODO implement the method
-        return 0.0;
+
+    	int quantity=0;
+    	for (CartLine list: actualCartList) {
+    		quantity = quantity + list.getQuantity();
+    	}
+    	return getTotalValue()/quantity;
     }
 
     /**
