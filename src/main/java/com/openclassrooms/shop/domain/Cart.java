@@ -52,7 +52,11 @@ public class Cart {
     public double getTotalValue()
     {
          //TODO implement the method
-        return 0.0;
+    	double total =0;
+    	for (CartLine list: actualCartList) {
+    		total += list.getSubtotal();
+    	}
+        return total;
 
     }
 
