@@ -1,5 +1,6 @@
 package com.openclassrooms.shop.repository;
 
+import com.openclassrooms.shop.domain.CartLine;
 import com.openclassrooms.shop.domain.Product;
 import org.springframework.stereotype.Repository;
 
@@ -40,10 +41,10 @@ public class ProductRepository {
     /**
      * @return All products from the inventory
      */
-    public Product[] findAll()
+    public List<Product> findAll()
     {
-        return products.stream().filter(p -> p.getStock() > 0).sorted(Comparator.comparing(Product::getName)).toArray(Product[]::new);
-    }
+        return products.stream().filter(p -> p.getStock() > 0).sorted(Comparator.comparing(Product::getName)).collect(Collectors.toList());    
+        }
 
     /**
      * @param productId ID of the getProductById
