@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Optional;
 
 public class Cart {
+	
+	List <CartLine> actualCartList = new ArrayList<CartLine>();
 
     /**
      *
