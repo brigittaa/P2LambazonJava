@@ -57,7 +57,8 @@ public class ProductService {
 	 */
 	public void updateProductQuantities(Long productId, int quantity)
 	{
-
+		Optional <Product> product = getAllProducts().stream().filter(x ->x.getId().equals(productId)).findFirst();
+			product.get().setStock(product.get().getStock()-quantity);			
 		// TODO implement the method
 	}
 }
