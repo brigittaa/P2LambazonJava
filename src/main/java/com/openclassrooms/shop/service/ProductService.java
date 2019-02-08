@@ -30,7 +30,7 @@ public class ProductService {
 	/**
 	 * @return all products from the inventory
 	 */
-	public List<Product> getAllProducts() {
+	public List<Product> getAllProducts() { /**change return type from array to List**/
 
 		// TODO change the return type from array to List<T> and propagate the change
 		// throughout the application
@@ -46,8 +46,8 @@ public class ProductService {
 	{
 		// TODO implement the method
 		Optional<Product> product = getAllProducts().stream().filter(x ->x.getId().equals(productId)).findFirst();
-		
-		return product.get();
+		/**find the first product by productId from a stream and store it in optional object with the name of product **/
+		return product.get(); /**return product**/
 
 	}
 
@@ -58,7 +58,9 @@ public class ProductService {
 	public void updateProductQuantities(Long productId, int quantity)
 	{
 		Optional <Product> product = getAllProducts().stream().filter(x ->x.getId().equals(productId)).findFirst();
-			product.get().setStock(product.get().getStock()-quantity);			
+		/**find the first product by productId from a stream and store it in optional object with the name of product **/
+			product.get().setStock(product.get().getStock()-quantity); /**substract the ordered quantity from current quantity of the product and 
+			set the value of stock variable accordingly**/
 		// TODO implement the method
 	}
 }
