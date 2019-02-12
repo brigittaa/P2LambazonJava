@@ -29,8 +29,10 @@ public class ProductService {
 
 	/**
 	 * @return all products from the inventory
+	 * BA: change return type from array to List
 	 */
-	public List<Product> getAllProducts() { /**change return type from array to List**/
+
+	public List<Product> getAllProducts() {
 
 		// TODO change the return type from array to List<T> and propagate the change
 		// throughout the application
@@ -42,25 +44,40 @@ public class ProductService {
 	 * @param productId Id of the product
 	 * @return a product form the inventory
 	 */
-	public Product getProductById(Long productId)
-	{
+	public Product getProductById(Long productId) {
 		// TODO implement the method
-		Optional<Product> product = getAllProducts().stream().filter(x ->x.getId().equals(productId)).findFirst();
-		/**find the first product by productId from a stream and store it in optional object with the name of product **/
-		return product.get(); /**return product**/
-
+		
+		/**
+		 * find the first product by productId from a stream 
+		 * store it in optional object with the name of product
+		 **/		
+		Optional<Product> product = getAllProducts().stream().filter(x -> x.getId().equals(productId)).findFirst();
+		if(product.isPresent()) {
+			return product.get(); 
+		} else {
+			return null;
+		}
 	}
 
 	/**
-	 * Update the quantities left for each product in the inventory depending of ordered the quantities
+	 * Update the quantities left for each product in the inventory depending of
+	 * ordered the quantities
+	 * 
 	 * @param productId ID of the product to be updated
 	 */
-	public void updateProductQuantities(Long productId, int quantity)
-	{
-		Optional <Product> product = getAllProducts().stream().filter(x ->x.getId().equals(productId)).findFirst();
-		/**find the first product by productId from a stream and store it in optional object with the name of product **/
-			product.get().setStock(product.get().getStock()-quantity); /**substract the ordered quantity from current quantity of the product and 
-			set the value of stock variable accordingly**/
+	public void updateProductQuantities(Long productId, int quantity) {		
 		// TODO implement the method
+		
+		/**
+		 * find the first product by productId from a stream
+		 * store it in optional object with the name of product
+		 * substract the ordered quantity from current quantity of the product 
+		 * set the value of stock variable accordingly
+		 **/
+		
+		Optional<Product> product = getAllProducts().stream().filter(x -> x.getId().equals(productId)).findFirst();
+		if (product.isPresent()) {
+			product.get().setStock(product.get().getStock() - quantity);
+		} 			
 	}
 }
