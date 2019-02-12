@@ -38,14 +38,15 @@ public class ProductRepository {
 
 	/**
 	 * @return All products from the inventory
+	 * BA:change return type from array to list
 	 */
-	public List<Product> findAll() { /**change return type from array to list**/
-		return products.stream().filter(p -> p.getStock() > 0).sorted(Comparator.comparing(Product::getName))
-				.collect(Collectors.toList()); /**Collect stream elements into a list instance**/
+	public List<Product> findAll() { 
+		/**Collect stream elements into a list instance**/
+		return products.stream().filter(p -> p.getStock() > 0).sorted(Comparator.comparing(Product::getName)).collect(Collectors.toList());
 	}
 
 	/**
-	 * @param productId        ID of the getProductById
+	 * @param productId ID of the getProductById
 	 * @param quantityToRemove Quantity of the getProductById
 	 */
 	public void updateProductStocks(int productId, int quantityToRemove) {
